@@ -4,26 +4,26 @@ public class Movie implements Comparable<Movie>{
 	//members
 	private String name;
 	private int time;
-	private int value; //name can be changed	
+	private double value; //name can be changed	
 	//...
 	
 	//constructors
 	Movie(){
 		this.name = null;
 		this.time = 0;
-		this.value = 0;
+		this.value = 0.0;
 	}
-	public Movie(String name, int time, int value){
+	public Movie(String name, int time, double value){
 		this.name = name;
 		this.time = time;
 		this.value = value;
 	}	
-	public Movie(StringBuilder name, int time, int value){
+	public Movie(StringBuilder name, int time, double value){
 		this.name = name.toString();
 		this.time = time;
 		this.value = value;
 	}	
-	public Movie(char[] name, int time, int value){
+	public Movie(char[] name, int time, double value){
 		this.name = new String(name);
 		this.time = time;
 		this.value = value;
@@ -38,7 +38,7 @@ public class Movie implements Comparable<Movie>{
 		int hour = this.time/(int)60;
 		return (double)hour + (double)(this.time - (hour * 60)) / 60;
 	}	
-	public int getValue(){ //public if needed
+	public double getValue(){ //public if needed
 		return value;
 	}	
 	public String getName(){
@@ -53,6 +53,16 @@ public class Movie implements Comparable<Movie>{
 	
 	@Override
 	public int compareTo(Movie target){
-		return this.value - target.value;
+		double tmp = this.value - target.value;
+		if(tmp > 0){
+			return 1;
+		}
+		else if(tmp == 0){
+			return 0;
+		}
+		else{// if(tmp < 0)
+			return -1;
+		}
+		
 	}
 }
