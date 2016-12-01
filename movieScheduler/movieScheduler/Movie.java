@@ -3,13 +3,13 @@ package movieScheduler;
 public class Movie implements Comparable<Movie>{
 	//members
 	private String name;
-	private int time;
+	private int time; // represent minutes
 	private double value; //name can be changed	
 	//...
 	
 	//constructors
 	Movie(){
-		this.name = null;
+		this.name = "no_name";
 		this.time = 0;
 		this.value = 0.0;
 	}

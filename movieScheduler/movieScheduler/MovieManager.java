@@ -3,6 +3,7 @@ package movieScheduler;
 import java.lang.*;
 import java.util.*;
 
+
 public class MovieManager {
 	//members
 	private PriorityQueue<Movie> movieList;
@@ -45,6 +46,7 @@ public class MovieManager {
 		return listMovie;
 	}
 	
+	
 	public static ArrayList<Double> getMovieDistribution(ArrayList<Movie> list){//the list of rate is not sorted.		
 		ArrayList<Double> listValueRate = new ArrayList<Double>(list.size());
 		double sumValue = 0;
@@ -59,12 +61,22 @@ public class MovieManager {
 	public ArrayList<Double> getMovieDistribution(){		
 		return MovieManager.getMovieDistribution(this.getMovieList());
 	}
-	
-	
-	
 	//getter for reverse order if needed	
 	//...
 	
-	
 }
 
+/*
+class TestMain
+{
+	public static void main(){
+		Movie[] arrm = {new Movie(), };
+		MovieManager m = new MovieManager(arrm);
+		m.addToList(new Movie("yes_name",0,0.0));
+		ArrayList lstm = m.getMovieList();
+		for(int i = 0; i < lstm.size(); i++){
+			System.out.println(lstm.get(i));
+		}
+	}
+}
+*/
