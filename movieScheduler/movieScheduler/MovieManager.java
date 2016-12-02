@@ -7,35 +7,29 @@ import java.util.*;
 public class MovieManager {
 	//members
 	private PriorityQueue<Movie> movieList;
-	//...
-	
 	//constructors
 	public MovieManager()
 	{
 		this.movieList = new PriorityQueue<Movie>();
-		//...
 	}
 	public MovieManager(Movie[] arrMovie){
 		this.movieList = new PriorityQueue<Movie>(arrMovie.length);
 		for(int i = 0; i < arrMovie.length; i++){
 			this.movieList.add(arrMovie[i]);
 		}
-		//...
 	}
 	public MovieManager(ArrayList<Movie> listMovie){
 		this.movieList = new PriorityQueue<Movie>(listMovie.size());
 		for(int i = 0; i < listMovie.size(); i++){
 			this.movieList.add(listMovie.get(i));
 		}
-		//...
 	}
-	//...
 	
 	//setters
 	public boolean addToList(Movie m){
 		return this.movieList.add(m);
 	}
-	//...
+
 	//getters
 	public ArrayList<Movie> getMovieList(){
 		PriorityQueue<Movie> tmpMovieList = new PriorityQueue<Movie>(this.movieList);
@@ -46,7 +40,15 @@ public class MovieManager {
 		return listMovie;
 	}
 	
-	
+	public ArrayList<Double> getValueList(){
+		ArrayList<Movie> listMovie = this.getMovieList();
+		ArrayList<Double> valueList = new ArrayList<Double>(listMovie.size());
+		for(int i = 0; i < valueList.size(); i++){
+			valueList.add(listMovie.get(i).getValue());
+		}
+		return valueList;
+	}
+ 	
 	public static ArrayList<Double> getMovieDistribution(ArrayList<Movie> list){//the list of rate is not sorted.		
 		ArrayList<Double> listValueRate = new ArrayList<Double>(list.size());
 		double sumValue = 0;
@@ -61,8 +63,6 @@ public class MovieManager {
 	public ArrayList<Double> getMovieDistribution(){		
 		return MovieManager.getMovieDistribution(this.getMovieList());
 	}
-	//getter for reverse order if needed	
-	//...
 	
 }
 

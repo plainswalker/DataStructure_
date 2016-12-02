@@ -8,7 +8,7 @@ public class Movie implements Comparable<Movie>{
 	//...
 	
 	//constructors
-	Movie(){
+	public Movie(){
 		this.name = "no_name";
 		this.time = 0;
 		this.value = 0.0;
