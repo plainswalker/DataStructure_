@@ -10,7 +10,7 @@ public class TimeTable {
 	private boolean tableModified;
 	
 	final static private int startHour = 8;
-	final static private int endHour = 24;
+	final static private int endHour = 26;
 	final static private int defaultTheaterRunningTime = (TimeTable.endHour - TimeTable.startHour) * 60;
 	final static private int defaultNumScreen = 6;
 	
@@ -54,33 +54,53 @@ public class TimeTable {
 		if(this.tableModified){
 			this.tableStringList.clear();
 			ArrayList<String> tmpStrLst = new ArrayList<String>();			
-			for(int i = 0; i < this.listMovie.size(); i++){
-				tmpStrLst.clear();
-				tmpStrLst.add(this.listMovie.get(i).getName());
-				for(int j = 0; j < this.numScreen; j++){				
-					for(int k = 0; k < this.theaterRunningTime; ){
-						if(this.listMovieIdx.get(j).get(k) == i){
-							StringBuilder tmpStrBuilder = new StringBuilder();
-							int movieStartTime = TimeTable.startHour*60 + k;
-							tmpStrBuilder.append(movieStartTime/60).append(" : ");
-							if(movieStartTime%60 < 10){
-								tmpStrBuilder.append("0").append(movieStartTime%60);
+			for(int i = 0; i < this.listMovie.size(); i++){								
+				for(int j = 0; j < this.numScreen; j++){					
+					int k = 0;
+					for(;k < this.theaterRunningTime;k++){
+						
+						while(this.listMovieIdx.get(j).get(k) == i){							
+							try{
+								if(this.listMovieIdx.get(j).get(k + this.listMovie.get(i).getTime()) == i){
+									StringBuilder tmpStrBuilder = new StringBuilder();
+									int movieStartTime = TimeTable.startHour*60 + k;
+									tmpStrBuilder.append(movieStartTime/(int)60).append(" : ");
+									if(movieStartTime%60 < 10){
+										tmpStrBuilder.append("0").append(movieStartTime%60);
+									}
+									else{
+										tmpStrBuilder.append(movieStartTime%60);
+									}
+									tmpStrBuilder.append(" Screen ").append(j+1);							
+									tmpStrLst.add(tmpStrBuilder.toString());
+									k += this.listMovie.get(i).getTime();
+								}
+								else
+								{
+									k++;
+									break;
+								}
 							}
-							else
-							{
-								tmpStrBuilder.append(movieStartTime%60);
+							catch(IndexOutOfBoundsException e){
+								k++;
+								break;
 							}
-							tmpStrBuilder.append("  Screen ").append(j+1);							
-							tmpStrLst.add(tmpStrBuilder.toString());							
-							k += this.listMovie.get(i).getTime()/*+resttime*/;							
-						}
-						else
-						{
-							k++;
-						}
-					}					
+					//		if((this.theaterRunningTime - k) < this.listMovie.get(i).getTime())
+				//			{
+				//				k++;
+				//				break;
+				//			}							
+						}						
+					}
+					
+					if(!tmpStrLst.isEmpty())
+					{
+						tmpStrLst.add(this.listMovie.get(i).getName());
+						this.tableStringList.add(new ArrayList<String>(tmpStrLst));
+						tmpStrLst.clear();
+					}
 				}
-				this.tableStringList.add(new ArrayList<String>(tmpStrLst));
+				
 			}
 			this.tableModified = false;
 		}

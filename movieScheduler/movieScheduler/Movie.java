@@ -5,7 +5,6 @@ public class Movie implements Comparable<Movie>{
 	private String name;
 	private int time; // represent minutes
 	private double value; //name can be changed	
-	//...
 	
 	//constructors
 	public Movie(){
@@ -28,7 +27,6 @@ public class Movie implements Comparable<Movie>{
 		this.time = time;
 		this.value = value;
 	}
-	//...
 	
 	//getters
 	public int getTime(){
@@ -47,21 +45,17 @@ public class Movie implements Comparable<Movie>{
 	public StringBuilder getNameBuilder(){
 		return new StringBuilder(this.name);
 	}
-	//...
-	
-	
 	
 	@Override
-	public int compareTo(Movie target){
-		double tmp = this.value - target.value;
-		if(tmp > 0){
-			return 1;
+	public int compareTo(Movie target){		
+		if(this.value > target.value){
+			return -1;
 		}
-		else if(tmp == 0){
+		else if(this.value == target.value){
 			return 0;
 		}
 		else{// if(tmp < 0)
-			return -1;
+			return 1;
 		}
 		
 	}

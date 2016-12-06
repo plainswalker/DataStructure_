@@ -15,9 +15,15 @@ import movieScheduler.*;
 public class uitest {
     public static void main(String[] args) {
     	MovieManager test_mm = new MovieManager();
-    	test_mm.addToList(new Movie("55",100,0.55));
-    	test_mm.addToList(new Movie("15",60,0.45));   
-    	TimeTableManager test_ttm = new TimeTableManager(test_mm.getMovieList());   	
+    	test_mm.addToList(new Movie("4th",118,0.17));
+    	test_mm.addToList(new Movie("2nd",100,0.24));
+    	test_mm.addToList(new Movie("1st",110,0.36));    	
+    	test_mm.addToList(new Movie("3rd",132,0.21));
+    	
+    	
+    	TimeTableManager test_ttm = new TimeTableManager(test_mm.getMovieList());
+    	System.out.println(test_ttm.makeTable().getTableStringList());
+    	
         Runnable r = new Runnable() {
         
             @Override

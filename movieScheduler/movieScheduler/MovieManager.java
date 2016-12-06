@@ -1,6 +1,5 @@
 package movieScheduler;
 
-import java.lang.*;
 import java.util.*;
 
 
@@ -39,14 +38,16 @@ public class MovieManager {
 		}
 		return listMovie;
 	}
-	
-	public ArrayList<Double> getValueList(){
-		ArrayList<Movie> listMovie = this.getMovieList();
+	public static ArrayList<Double> getValueList(ArrayList<Movie> listMovie){		
 		ArrayList<Double> valueList = new ArrayList<Double>(listMovie.size());
-		for(int i = 0; i < valueList.size(); i++){
-			valueList.add(listMovie.get(i).getValue());
+		for(int i = 0; i < listMovie.size(); i++){
+			valueList.add(new Double(listMovie.get(i).getValue()));
 		}
 		return valueList;
+	}
+	
+	public ArrayList<Double> getValueList(){
+		return MovieManager.getValueList(this.getMovieList());
 	}
  	
 	public static ArrayList<Double> getMovieDistribution(ArrayList<Movie> list){//the list of rate is not sorted.		
@@ -64,19 +65,5 @@ public class MovieManager {
 		return MovieManager.getMovieDistribution(this.getMovieList());
 	}
 	
+	
 }
-
-/*
-class TestMain
-{
-	public static void main(){
-		Movie[] arrm = {new Movie(), };
-		MovieManager m = new MovieManager(arrm);
-		m.addToList(new Movie("yes_name",0,0.0));
-		ArrayList lstm = m.getMovieList();
-		for(int i = 0; i < lstm.size(); i++){
-			System.out.println(lstm.get(i));
-		}
-	}
-}
-*/
